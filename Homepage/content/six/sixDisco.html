@@ -21,12 +21,9 @@
     </div>
      <nav class="secondary_header" id="menu">
       <ul>
-        <li>ABOUT</li>
-        <li>WORK</li>
-        <li>PORTFOLIO</li>
-        <li>SERVICES</li>
-        <li>CLIENTS</li>
-        <li>CONTACT</li>
+        <li><a href= "../../index.html">Home</a></li>
+        <li><a href= "../project.html">Project</a></li>
+        <li><a href= "../team.html">Team</a></li>
       </ul>
     </nav>
             </header>
@@ -34,6 +31,7 @@
     <h2 class="noDisplay">Main Content</h2>
     <article class="left_article">
       <h3>Discovering when an AWS role or group is alterred</h3>
+      <img src="../../images/6_2.jpg" >
       <p>It is important to keep track of all ongoing activity logs of users to make sure that they are only using the applications that they have been given permission to.</p>
       <p>AWS has logging features that can determine what actions users are taking as well as the resources they are using. </p>
       <p><u>What Do Log Files Show?</u></p>
@@ -43,22 +41,19 @@
             <li>Source IP for an action</li>
             <li>Actions that failed due to inadequate permissions and more</li>
       </ul>
-      <p>Many of AWS’s services have logging capabilities:</p>
-      <p><u>Amazon CloudFront</u></p>
-      <p>“Logs user requests that CloudFront receives.” 
-More Information: https://aws.amazon.com/cloudfront/</p>
       <p><u>AWS CloudTrail</u></p>
-      <p>“Logs AWS API calls and related events made by or on behalf of an AWS account.”
-More Information: https://aws.amazon.com/cloudtrail/</p>
-      <p><u>Amazon CloudWatch</u></p>
-      <p>“Monitors your AWS cloud resources and the applications you run on AWS. You can set alarms in CloudWatch based on metrics that you define.”
-More Information: https://aws.amazon.com/cloudwatch/</p>
-      <p><u>AWS Config</u></p>
-      <p>“Provides detailed historical information about the configuration of your AWS resources, including your IAM users, groups, roles, and policies. AWS Config can determine the permissions that belonged to a user or group at a specific time.”
-More Information: https://aws.amazon.com/config/</p>
-      <p><u>Amazon Simple Storage Service (Amazon S3)</u></p>
-      <p>“Logs access requests to your Amazon S3 buckets.”
-More Information: https://aws.amazon.com/s3/</p>
+      <p>AWS IAM, Identity and Access Management, is integrated with CloudTrail logs. Cloudtrail “logs AWS API calls and related events made by or on behalf of an AWS account.”</p>
+      <p><u>AWS API Event in CloudTrail Log File</u></p>
+      <p>If a user changes as AWS role the user, time, and IP address will be stored in the log file.  This is important to look at when a threat of a changed IAM role is suspected.</p>
+      <p>This can be shown in the figure below:</p>
+      <p>The new user below, SampleUser was added to the group newGroup, giving them access to AmazonEC2FullAccess.</p>
+      <img src="../../images/6_3.jpg" >
+      <p>After creating a trail names TestTrail in CloudTrail, with the S3 Bucket, the logs will be saved into the designated S3 bucket.</p>
+      <img src="../../images/6_4.jpg" >
+      <p>The logs can then be viewed within that S3 bucket under the Amazon Service S3.</p>
+      <img src="../../images/6_5.jpg" >
+      <p>More Information: https://aws.amazon.com/cloudtrail/ and http://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html#cloudtrailintegration-iam-information</p>
+      <p>Taken directly from http://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html </p>
     </article>
             </section>
             <div class="row">

@@ -21,12 +21,9 @@
     </div>
      <nav class="secondary_header" id="menu">
       <ul>
-        <li>ABOUT</li>
-        <li>WORK</li>
-        <li>PORTFOLIO</li>
-        <li>SERVICES</li>
-        <li>CLIENTS</li>
-        <li>CONTACT</li>
+        <li><a href= "../../index.html">Home</a></li>
+        <li><a href= "../project.html">Project</a></li>
+        <li><a href= "../team.html">Team</a></li>
       </ul>
     </nav>
             </header>
@@ -39,9 +36,13 @@
       <p>In the creation of IAM policies it is important to grant least privilege. Granting least privilege consists of granting only the permissions required to perform a task. It is important to determine what specifically the user will be doing and create policies that will allow them to perform only the necessary things in those tasks. </p>
       <p>It is more secure to start by granting just the minimum permissions for each user and granting additional permission when necessary. </p>
       <p>It is vital to be able to properly determine what it required for each task. Such as, what actions particular services support, and what permissions will be required by those actions. </p>
+      <p>As seen in the screenshot below,  the user is being granted DatabaseAdministrator group access, this is full access to al AWS services and databases. This is something that should not be granted to the majority of employees as it would be giving them too much access.</p>
+      <img src="../../images/6_6.jpg" >
+      <p>A more common example of groups IAM users are added to include the EC2_ReadOnly group. This is the perfect group to add someone to that does not need to be able to edit the EC2 services, but should be able to view them and watch what is happening.</p>
+      <img src="../../images/6_7.jpg" >
       <p><u>Useful Tool:</u></p>
       <p>Access Advisor Tab:</p>
-      <p>Available in the IAM console summary page. The tab includes information about which services are actually used by a user, group, role or policy. This information can be used to identify what permissions will be necessary and what may be unnecessary. This allows you to keep IAM policies to the least privilege policy. </p>
+      <p>Available in the IAM console summary page. As seen above on the lefthand side of the figure, Access Advisor tab is available in the IAM console summary page. The tab includes information about which services are actually used by a user, group, role or policy. This information can be used to identify what permissions will be necessary and what may be unnecessary. This allows you to keep IAM policies to the least privilege policy. </p>
     </article>
             </section>
             <div class="row">
