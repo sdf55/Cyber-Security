@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prevent</title>
+<link href="../../css/multiColumnTemplate.css" rel="stylesheet" type="text/css">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+      <div class="container">
+            <header>
+    <div class="primary_header">
+      <h1 class="title">AWS Cyber Security</h1>
+    </div>
+     <nav class="secondary_header" id="menu">
+      <ul>
+        <li><a href= "../../index.html">Home</a></li>
+        <li><a href= "../project.html">Project</a></li>
+        <li><a href= "../team.html">Team</a></li>
+      </ul>
+    </nav>
+            </header>
+            <section>
+    <h2 class="noDisplay">Main Content</h2>
+    <article class="left_article">
+      <h3>Preventing Creation of an Unencrypted S3 Object</h3>
+      <p>Two ways to encrypt the data stored on Amazon S3.</p>
+      <li><ul>Client-Side Encryption: Encrypt the data before it is sent over the network to AWS</ul>
+      <ul>
+            <li>Client-Side Encryption: Encrypt the data before it is sent over the network to AWS</li>
+            <img src="../../images/4_5.jpg" >
+            <li>Server-Side Encryption: Encrypt the data while on AWS</li>
+            <img src="../../images/4_6.jpg" >
+      </ul>
+      </li>
+      <p><u>Client Side Encryption</u></p>
+      <p>Client-side encryption is used to encrypt the data before it is sent over the network to AWS.</p>
+      <p>The encryption process is managed by the client side application, so the plaintext data and the master encryption key. None of the data ever leaves the client application.</p>
+      <p>There are 2 client side encryption options: </p>
+      <li>
+            <ul>Use AWS KMS-managed customer master key</ul>
+            <ul>Use client-side master key</ul>
+      </li>
+      <p><b>Option 1: Use AWS KMS–Managed Customer Master Key (CMK)</b></p>
+      <p>When AWS KMS (Key Management Service) is being used, encryption keys do not need to be provided to Amazon S3 encryption client.</p>
+      <p>AWS KMS manages the customer key for the client-side data encryption.</p>
+      <img src="../../images/4_7.jpg" >
+      <p>When using this, you only need to provide an AWS KMS customer master key ID (CMK ID) and the client will handle the rest.</p>
+      <p>http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html</p>
+      <p><b>When uploading an object</b></p>
+      <p>Using CMK ID, the clients can send a request to AWK KMS requesting for a key that it can use to encrypt the object data. In response to the request, AWK KMS returns a randomly generated data encryption key. There are 2 versions of AWS KMS data encryption keys.</p>
+      <p>-Plain Text Version</p>
+      <p>---Client uses the encrypt the object data</p>
+      <p>-Cipher Blob of the same data encryption key</p>
+      <p>---Client uploads data to Amazon S3 as object metadata</p>
+      <p><b>Note: </b>The client obtains a unique data encryption key for each object uploaded</p>
+      <p>Example: Client-Side Encryption (Option 1: Use an AWS KMS – Managed Customer Master Key (AWS SDK for Java)).</p>
+      <p>Example of how Amazon SDK works:</p>
+      <img src="../../images/4_8.jpg" >
+      <p><b>When downloading an object</b></p>
+      <p>First the encrypted data and the cipher blob version of the encrypted data, which is stored as an object metadata, is downloaded from Amazon S3 by the S3 client.  The cipher blob is then sent by the client to AWS KMS to get the plain text version and decrypt the object data.</p>
+      <p><b>Option 2: Use Client-Side Master Key</b></p>
+      <p>** Note: When using the client-side master key, it is vital that you safely manage the encryption key because they were never sent to AWS. If this key is lost, then it will not be possible to decrypt your data.</p>
+      <p><u>How to provide client-side master key in the client-side data encryption process:</u></p>
+      <p><b>When uploading an object</b> - Provide the client-side master key to the Amazon S3 encryption client i.e. AmazonS3EncryptionClient when using the AWS SDK for java. The client then uses the master key to encrypt the data encryption key which is generated randomly.</p>
+      <p>Process to encrypting the data encryption key:</p>
+      <li>
+            <ul>Amazon S3 encryption client locally generated a symmetric key which is a one-time key (the data encryption key or data key). This data key is then used to encrypt the data of a single S3 object (the client generated a separate data key for each object).</ul>
+            <ul>The client encrypts the data encryption key by using the master key that was provide.</ul>
+            <ul>As part of the object metadata, the client uploads the encrypted data key and its material description. The material description helps the client to later determine which client-side master key to use for decryption (the client has to decrypt the downloaded object).</ul>
+            <ul>The client then uploads the encrypted data to Amazon S3. The encrypted data is saved as object metadata (x--amz-meta-x-amz-key) in Amazon S3 by default.</ul>
+      </li>
+      <p><b>When downloading an object</b> - The encrypted object is first downloaded from Amazon S3 along with the metadata. Using the material description in the metadata, the client then determines which master key to use to decrypt the encrypted data key. Finally using the master key, the client decrypts the data key and uses it to decrypt the object.</p>
+      <p>http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html</p>
+      <p><u>Server Side Encryption</u></p>
+      <p>The server-side encryption is used to protect the data that is at rest. Amazon S3 encrypts the data at the object level  as it writes the data to disks in its data centers and decrypts the data for you when you access it. As long as you authenticate your request and you have access to permissions, there is no difference in the way you access encrypted or unencrypted objects because AWS provides three server-side encryption options.</p>
+      <p><b>Use Server-Side Encryption with Amazon S3-Managed Keys (SSE-S3)</b> - Each object is encrypted with a unique key with strong multi-factor encryption. As an additional safeguard, the object encrypts the key itself with a master key which it changes regularly. Amazon S3 server-side encryption uses 256-bit Advanced Encryption Standard (AES-256), which is one of the stronger cipher blocks, to encrypt the data. For more information, see Protecting Data Using Server-Side Encryption with Amazon S3-Managed Encryption Keys (SSE-S3).</p>
+      <img src="../../images/4_9.jpg" >
+      <p><b>Step By Step (shown in image above):</b></p>
+      <p>To put the object in the S3 Bucket:</p>
+      <ul>
+         <li>Supply your encryption key as part of a PUT and S3 will take care of the rest. It will:</li>
+         <ul>
+            <li>Use your key to apply AES-256 encryption to your data</li>
+            <li>Compute a one-way hash (checksum) of the key</li>
+            <li>Expeditiously remove the key from memory</li>
+            <li>Return the checksum as part of the response</li>
+            <li>Store the checksum with the object.</li>
+         </ul>
+      </ul>
+      <p>The flow is as follows:</p>
+      <ol>
+            <li>Supply the same key as part of a GET</li>
+            <li>S3 will verify the stored checksum matches that of the supplied key</li>
+            <li>S3 will decrypt the object</li>
+            <li>S3 will return the decrypted object and remove the key from memory</li>
+      </ol>
+      <p><b>Use Server-Side Encryption with AWS KMS-Managed Keys (SSE-KMS)</b></p>
+      <p>AWS KMS manages the customer key for the client-side data encryption.</p>
+      <img src="../../images/4_10.jpg" >
+      <p>Similar to SSE-S3, but there are some additional benefits and with the benefits come additional services. One of the benefits is an envelope key. The envelope key is a key that protects your data encryption key and provides an audit trail of when the key was used and who used it. Another benefit is to create and manage encryption keys yourself, or you can use a default key that is unique to you, the services which you are using and the region from where you are working. For more information, see Protecting Data Using Server-Side Encryption with AWS KMS–Managed Keys (SSE-KMS).</p>
+      <p><b>Use Server-Side Encryption with Customer-Provided Keys (SSE-C)</b> - While you manage the encryption key, Amazon S3 manages the encryption, writing data to the disk and decryption, when accessing the data. For more information, see Protecting Data Using Server-Side Encryption with Customer-Provided Encryption Keys (SSE-C).</p>
+      <p>In the website below there are steps shown for client and server-side encryption using AWS SDK In Ruby <br>
+https://www.concur.com/newsroom/article/using-data-encryption-in-aws<br>
+
+Other Websites Used: <br>
+http://searchaws.techtarget.com/answer/Whats-the-best-way-to-secure-Amazon-S3-buckets<br>
+http://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html
+</p>
+    </article>
+            </section>
+            <div class="row">
+    <div class="columns">
+      <p class="thumbnail_align"></p>
+      <a href= "fourScene.html">Scenario Home</a>
+    </div>
+        <div class="columns">
+      <p class="thumbnail_align"></p>
+      <a href= "fourDisco.html">Discovery</a>
+      </div>
+    <div class="columns">
+      <p class="thumbnail_align"></p>
+      <a href= "fourRem.html">Remediation</a>
+      </div>
+    <div class="columns">
+      <p class="thumbnail_align"></p>
+      <a href= "fourPDF.pdf">PDF</a>
+      <!-- THESE LINKS WILL BE CHANGED FOR EACH SCENARIO -->
+    </div>
+      </div>
+</body>
+</html>
