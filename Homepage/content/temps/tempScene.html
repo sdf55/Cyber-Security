@@ -1,11 +1,33 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Unauthorized API Call</title>
-<link href="../../css/multiColumnTemplate.css" rel="stylesheet" type="text/css">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Unauthorized API Call</title>
+	
+	<link href="../../css/multiColumnTemplate.css" rel="stylesheet" type="text/css">
+	<link href="../../css/sideAccordianMenu.css" rel="stylesheet" type="text/css">
+	
+ 	<script src="js/modernizr.js"></script> <!-- Modernizr -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script>
+      jQuery(document).ready(function() {
+    jQuery('.tabs .tab-links a').on('click', function(e)  {
+        var currentAttrValue = jQuery(this).attr('href');
+ 
+        // Show/Hide Tabs
+        jQuery('.tabs ' + currentAttrValue).slideDown(400).siblings().slideUp(400);
+ 
+        // Change/remove current tab to active
+        jQuery(this).parent('li').addClass('active').siblings().removeClass('active');
+ 
+        e.preventDefault();
+    });
+});
+</script>
+
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -14,44 +36,164 @@
     <![endif]-->
 </head>
 <body>
-      <div class="container">
-            <header>
-    <div class="primary_header">
-      <h1 class="title">AWS Cyber Security</h1>
-    </div>
-     <nav class="secondary_header" id="menu">
-      <ul>
-        <li><a href= "../../index.html">Home</a></li>
-        <li><a href= "../project.html">Project</a></li>
-        <li><a href= "../team.html">Team</a></li>
-      </ul>
-    </nav>
-            </header>
-            <section>
+	<div class="container">
+    	<header>
+    		<div class="primary_header">
+      			<h1 class="title">AWS Cyber Security</h1>
+    		</div>
+     		<nav class="secondary_header" id="menu">
+      			<ul>
+        			<li><a href= "../../index.html">Home</a></li>
+        			<li><a href= "../project.html">Project</a></li>
+        			<li><a href= "../team.html">Team</a></li>
+     			</ul>
+    		</nav>
+        </header>
+        <article class="left">
+     		<ul id="nav">
+            	<li><a href="#">Home</a></li>
+                <li><a href="#" class="sub" tabindex="1"><img src="images/t2.png" />Unauthorized API calls</a><img src="images/up.gif" alt="" />
+                    <ul>
+                        <li><a href="#"><img src="images/empty.gif" />Discover</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Remediate</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Prevention</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="sub" tabindex="1"><img src="images/t3.png" />IAM API provisioned with a password</a><img src="images/up.gif" alt="" />
+                    <ul>
+                        <li><a href="#"><img src="images/empty.gif" />Discover</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Remediate</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Prevention</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="sub" tabindex="1"><img src="images/t3.png" />Global write</a><img src="images/up.gif" alt="" />
+                    <ul>
+                        <li><a href="#"><img src="images/empty.gif" />Discover</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Remediate</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Prevention</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="sub" tabindex="1"><img src="images/t3.png" />Create of unencrypted S3 objects</a><img src="images/up.gif" alt="" />
+                    <ul>
+                        <li><a href="#"><img src="images/empty.gif" />Discover</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Remediate</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Prevention</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="sub" tabindex="1"><img src="images/t3.png" />Foreign (other accounts) IAM</a><img src="images/up.gif" alt="" />
+                    <ul>
+                        <li><a href="#"><img src="images/empty.gif" />Discover</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Remediate</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Prevention</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="sub" tabindex="1"><img src="images/t3.png" />Alters an AWS role or group</a><img src="images/up.gif" alt="" />
+                    <ul>
+                        <li><a href="#"><img src="images/empty.gif" />Discover</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Remediate</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Prevention</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="sub" tabindex="1"><img src="images/t3.png" />Attacker is added to code deploy group</a><img src="images/up.gif" alt="" />
+                    <ul>
+                        <li><a href="#"><img src="images/empty.gif" />Discover</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Remediate</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Prevention</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="sub" tabindex="1"><img src="images/t3.png" />Attacker adds an IAM user</a><img src="images/up.gif" alt="" />
+                    <ul>
+                        <li><a href="#"><img src="images/empty.gif" />Discover</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Remediate</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Prevention</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="sub" tabindex="1"><img src="images/t3.png" />Remote SSH/RDP user</a><img src="images/up.gif" alt="" />
+                    <ul>
+                        <li><a href="#"><img src="images/empty.gif" />Discover</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Remediate</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Prevention</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="sub" tabindex="1"><img src="images/t3.png" />Use persistent "unrotated" API keys</a><img src="images/up.gif" alt="" />
+                    <ul>
+                        <li><a href="#"><img src="images/empty.gif" />Discover</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Remediate</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Prevention</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="sub" tabindex="1"><img src="images/t3.png" />Attacker uses API keys from public IP space</a><img src="images/up.gif" alt="" />
+                    <ul>
+                        <li><a href="#"><img src="images/empty.gif" />Discover</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Remediate</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Prevention</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="sub" tabindex="1"><img src="images/t3.png" />Security group world (0.0.0.0/0) inbound access</a><img src="images/up.gif" alt="" />
+                    <ul>
+                        <li><a href="#"><img src="images/empty.gif" />Discover</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Remediate</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Prevention</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="sub" tabindex="1"><img src="images/t3.png" />Security group all inbound ports open</a><img src="images/up.gif" alt="" />
+                    <ul>
+                        <li><a href="#"><img src="images/empty.gif" />Discover</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Remediate</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Prevention</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="sub" tabindex="1"><img src="images/t3.png" />Untrusted protocols allowed</a><img src="images/up.gif" alt="" />
+                    <ul>
+                        <li><a href="#"><img src="images/empty.gif" />Discover</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Remediate</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Prevention</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="sub" tabindex="1"><img src="images/t3.png" />Instance provisioned with a public IP</a><img src="images/up.gif" alt="" />
+                    <ul>
+                        <li><a href="#"><img src="images/empty.gif" />Discover</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Remediate</a></li>
+                        <li><a href="#"><img src="images/empty.gif" />Prevention</a></li>
+                    </ul>
+                </li>
+                
+            </ul> 
+        </article>
+        
+        <!-- THIS IS WHERE YOUR CODE BEGINS-->
+        <section>
     <h2 class="noDisplay">Main Content</h2>
     <article class="left_article">
-      <h3>Scenario Name</h3>
-      <p>Content</p>
-          </article>
-            </section>
-            <div class="row">
-    <div class="columns">
-      <p class="thumbnail_align"></p>
-      <a href= "##Disco.html">Discovery</a>
-    </div>
-    <div class="columns">
-      <p class="thumbnail_align"></p>
-      <a href= "##Rem.html">Remediation</a>
+      <div class="tabs">
+            <ul class="tab-links">
+                  <li class="active"><a href="#tab1">Scenario Overview</a></li>
+                  <li><a href="#tab2">Discovery</a></li>
+                  <li><a href="#tab3">Remediation</a></li>
+                  <li><a href="#tab4">Prevention</a></li>
+                  <li><a href="#tab5">PDF Recap</a></li>
+            </ul>
+            <div class="tab-content">
+                  <div id="tab1" class="tab active">
+                        <p>CONTENT FOR OVERVIEW</p>
+                  </div>
+                  <div id="tab2" class="tab">
+                        <p>CONTENT FOR DISCOVERY</p>
+                  </div>
+                  <div id="tab3" class="tab">
+                        <p>CONTENT FOR REMEDIATION</p>
+                  </div>
+                  <div id="tab4" class="tab">
+                        <p>CONTENT FOR PREVENTION</p>
+                  </div>
+                  <div id="tab5" class="tab">
+                        <p>CONTENT PDF RECAP</p>
+                  </div>
+            </div>
       </div>
-    <div class="columns">
-      <p class="thumbnail_align"></p>
-      <a href= "##Prev.html">Prevention</a>
-      </div>
-    <div class="columns">
-      <p class="thumbnail_align"></p>
-      <a href= "##PDF.pdf">PDF</a>
-      <!-- THESE LINKS WILL BE CHANGED FOR EACH SCENARIO -->
-    </div>
-      </div>
+      </article>
+      </section>
+
+	</div>
 </body>
 </html>
